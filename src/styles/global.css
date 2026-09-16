@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@theme { --font-sans: "Noto Sans Hebrew", "Arial Hebrew", Arial, sans-serif; --font-serif: "Frank Ruhl Libre", Georgia, serif; --color-olive: #193c35; --color-olive2: #2e5b4e; --color-gold: #d8ad62; --color-sand: #f4efe5; --color-ink: #1d2824; }
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f4efe5; color: #1d2824; font-family: var(--font-sans); }
+::selection { background: #d8ad62; color: #193c35; }
+.display { font-family: var(--font-serif); letter-spacing: -.04em; }
+.texture { background-image: radial-gradient(rgba(25,60,53,.07) 1px, transparent 1px); background-size: 13px 13px; }
+.reveal { animation: reveal .7s both; }
+@keyframes reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { animation: none; } }
