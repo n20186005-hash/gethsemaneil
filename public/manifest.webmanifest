@@ -1,0 +1,16 @@
+{
+  "name": "גת שמנים — מדריך ביקור",
+  "short_name": "גת שמנים",
+  "description": "מדריך ביקור בגת שמנים בירושלים — גן זיתים עתיק, כנסיית כל העמים ומרחב של תפילה והתבוננות.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#193c35",
+  "theme_color": "#193c35",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "/icons/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/apple-touch-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
