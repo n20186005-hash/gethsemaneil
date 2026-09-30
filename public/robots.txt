@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://gethsemaneil.com/sitemap-index.xml

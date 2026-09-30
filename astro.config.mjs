@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-const site = import.meta.env.PUBLIC_SITE_URL || undefined;
+const site = import.meta.env.PUBLIC_SITE_URL || 'https://gethsemaneil.com';
 export default defineConfig({
   site,
   output: 'static',

@@ -5,11 +5,13 @@ const site = import.meta.env.PUBLIC_SITE_URL || 'https://gethsemaneil.com';
 const canonical = new URL('/', site).toString();
 const mapsUrl = 'https://maps.app.goo.gl/int1LT9WUDdZW2u57';
 const govtTourismUrl = 'https://www.goisrael.com';
+const wikiGethsemane = 'https://en.wikipedia.org/wiki/Garden_of_Gethsemane';
+const wikiChurch = 'https://en.wikipedia.org/wiki/Church_of_All_Nations';
 const ratingValue = '4.8';
-const reviewCount = '14,638';
+const reviewCount = '14,645';
 const syncMonth = '2026 年 9 月';
-const title = 'גת שמנים (ירושלים) — מדריך ביקור, מיקום והגעה';
-const description = 'מדריך ביקור בגת שמנים בירושלים — גן זיתים עתיק, כנסיית כל העמים ומרחב של תפילה והתבוננות.';
+const title = 'גת שמנים (ירושלים) — שעות פתיחה, כניסה חינם והגעה';
+const description = 'מדריך ביקור בגת שמנים בירושלים: שעות פתיחה (08:00–18:00), כניסה חינם, מיקום ודרכי הגעה, ומידע על כנסיית כל העמים וגן הזיתים העתיק.';
 const heroImage = `${canonical}images/gethsemane-garden.jpg`;
 const faqs = [
   ['האם הכניסה לגת שמנים כרוכה בתשלום?', 'הכניסה לגן פתוחה למבקרים ללא כרטיס. סיורים מודרכים ומתחמים נלווים עשויים לפעול לפי הסדרים נפרדים — מומלץ לבדוק מול האתר הרשמי לפני ההגעה.'],
@@ -23,31 +25,62 @@ const faqs = [
 ];
 const attractionSchema = {
   '@context': 'https://schema.org',
-  '@type': 'TouristAttraction',
+  '@type': ['TouristAttraction', 'Church', 'Place'],
   '@id': `${canonical}#attraction`,
   'name': 'Gethsemane',
-  'alternateName': ['גת שמנים', 'Gethsemane Garden', 'Garden of Gethsemane', '客西马尼园'],
+  'alternateName': ['גת שמנים', 'Gethsemane Garden', 'Garden of Gethsemane', '客西马尼园', 'Church of All Nations', 'Basilica of the Agony'],
   'description': description,
   'url': canonical,
   'image': [heroImage],
   'isAccessibleForFree': true,
   'telephone': '+972 2-626-6444',
   'openingHours': 'Mo-Su 08:00-18:00',
+  'openingHoursSpecification': [
+    {
+      '@type': 'OpeningHoursSpecification',
+      'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      'opens': '08:00',
+      'closes': '18:00'
+    }
+  ],
   'address': {
     '@type': 'PostalAddress',
     'streetAddress': 'Jericho Road',
     'addressLocality': 'Jerusalem',
     'addressRegion': 'Jerusalem District',
-    'addressCountry': 'IL'
+    'addressCountry': 'IL',
+    'postalCode': '91190'
   },
   'geo': { '@type': 'GeoCoordinates', 'latitude': 31.7717, 'longitude': 35.2394 },
   'hasMap': mapsUrl,
-  'sameAs': [mapsUrl, govtTourismUrl]
+  'aggregateRating': {
+    '@type': 'AggregateRating',
+    'ratingValue': '4.8',
+    'reviewCount': '14645',
+    'bestRating': '5',
+    'worstRating': '1'
+  },
+  'sameAs': [mapsUrl, govtTourismUrl, wikiGethsemane, wikiChurch]
 };
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   'mainEntity': faqs.map(([q, a]) => ({ '@type': 'Question', 'name': q, 'acceptedAnswer': { '@type': 'Answer', 'text': a } }))
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  'name': 'גת שמנים — מדריך ביקור',
+  'url': site,
+  'inLanguage': 'he'
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'בית', 'item': site },
+    { '@type': 'ListItem', 'position': 2, 'name': 'גת שמנים', 'item': canonical }
+  ]
 };
 ---
 <html lang="he" dir="rtl">
@@ -58,6 +91,8 @@ const faqSchema = {
   <meta name="description" content={description} />
   <meta name="theme-color" content="#193c35" />
   <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="he" href={canonical} />
+  <link rel="alternate" hreflang="x-default" href={canonical} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/icons/favicon-32.svg" sizes="32x32" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.svg" />
@@ -79,6 +114,8 @@ const faqSchema = {
   </script>
   <script type="application/ld+json" set:html={JSON.stringify(attractionSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </head>
 <body>
   <header class="absolute inset-x-0 top-0 z-20 text-white"><div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-6"><a href="#top" class="flex items-center gap-3 font-bold tracking-wide"><img src="/icons/logo.svg" class="h-10 w-10" alt="סמל גת שמנים" /><span>גת שמנים</span></a><nav class="hidden gap-7 text-sm md:flex"><a href="#story" class="opacity-80 hover:opacity-100">הסיפור</a><a href="#weather" class="opacity-80 hover:opacity-100">מזג אוויר</a><a href="#visit" class="opacity-80 hover:opacity-100">תכנון ביקור</a><a href="#services" class="opacity-80 hover:opacity-100">שירותים</a><a href="#around" class="opacity-80 hover:opacity-100">בסביבה</a></nav><a class="rounded-full border border-white/40 px-4 py-2 text-sm hover:bg-white hover:text-olive" href="#map">איך מגיעים</a></div></header>
