@@ -1,66 +1,45 @@
 ---
 import '../styles/global.css';
-import { ArrowLeft, MapPin, Clock3, Car, Ticket, Utensils, Footprints, ChevronDown, ExternalLink, Droplets, BedDouble, ShoppingBag, Fuel, Bath, Sun, Camera, Users } from 'lucide-astro';
+import { ArrowLeft, ChevronDown, Droplets, Sun } from 'lucide-astro';
 const site = import.meta.env.PUBLIC_SITE_URL || 'https://gethsemaneil.com';
 const canonical = new URL('/', site).toString();
 const mapsUrl = 'https://maps.app.goo.gl/int1LT9WUDdZW2u57';
-const govtTourismUrl = 'https://www.goisrael.com';
-const wikiGethsemane = 'https://en.wikipedia.org/wiki/Garden_of_Gethsemane';
-const wikiChurch = 'https://en.wikipedia.org/wiki/Church_of_All_Nations';
+const operatorUrl = 'https://www.custodia.org/en/sanctuaries/gethsemane-basilica-agony/';
+const cicUrl = 'https://www.cicts.org/our-services/';
 const ratingValue = '4.8';
-const reviewCount = '14,645';
-const syncMonth = '2026 年 9 月';
-const title = 'גת שמנים (ירושלים) — שעות פתיחה, כניסה חינם והגעה';
-const description = 'מדריך ביקור בגת שמנים בירושלים: שעות פתיחה (08:00–18:00), כניסה חינם, מיקום ודרכי הגעה, ומידע על כנסיית כל העמים וגן הזיתים העתיק.';
-const heroImage = `${canonical}images/gethsemane-garden.jpg`;
+const reviewCount = '14,670';
+const syncDate = '29.10.2026';
+const title = 'גת שמנים: הגן, כנסיית כל העמים ושעות ביקור | מדריך עצמאי';
+const description = 'מדריך לגת שמנים בירושלים: ההבדל בין גן הזיתים, כנסיית כל העמים והמערה, שעות עונתיות ומחלוקות בין המקורות, הגעה וביקור מכבד. יש לאשר את שעות הגישה לפני היציאה.';
+const heroImage = `${canonical}images/olive-illustration.png`;
 const faqs = [
-  ['האם הכניסה לגת שמנים כרוכה בתשלום?', 'הכניסה לגן פתוחה למבקרים ללא כרטיס. סיורים מודרכים ומתחמים נלווים עשויים לפעול לפי הסדרים נפרדים — מומלץ לבדוק מול האתר הרשמי לפני ההגעה.'],
-  ['כמה זמן כדאי להקדיש לביקור?', 'כ־30–60 דקות מספיקות לגן ולכנסייה. אם משלבים את דרך הייסורים, כנסיית מריה מגדלן והר הזיתים, כדאי לתכנן חצי יום.'],
-  ['האם המקום מתאים לביקור בשבת ובחגים?', 'זהו אתר דתי פעיל. שעות הגישה והאפשרות להיכנס לכנסייה עשויות להשתנות לפי לוח התפילות והחגים; יש להגיע בלבוש מכבד ובשקט.'],
-  ['איך מגיעים לתחבורה ציבורית?', 'אוטובוסים עוצרים לאורך דרך יריחו וסביב שער האריות. מהתחנה ממשיכים ברגל בירידה קצרה לכיוון כנסיית כל העמים.'],
-  ['איפה גת שמנים ממוקמת?', 'גת שמנים שוכנת למרגלות הר הזיתים בירושלים, סמוך לכנסיית כל העמים ולנחל קדרון. קוד המיקום (Plus Code) הוא Q6HQ+PW, ירושלים.'],
-  ['מהן שעות הפתיחה?', 'הגן פתוח בדרך כלל מדי יום בשעות 08:00–18:00. שעות הכניסה לכנסייה עשויות להשתנות לפי לוח התפילות והחגים.'],
-  ['איך יוצרים קשר עם האתר?', 'ניתן לפנות בטלפון +972 2-626-6444. מומלץ לוודא פרטים מול האתר הרשמי לפני ההגעה.'],
-  ['אילו אתרים נוספים יש בסביבה?', 'בסביבה הקרובה: כנסיית כל העמים (דקה אחת), קבר מרים (כ-3 דקות), כנסיית דומינוס פלוויט (כ-12 דקות בעלייה) והעיר העתיקה ושער האריות (כ-15 דקות הליכה).']
+  ['האם גת שמנים וכנסיית כל העמים הם אותו אתר?', 'לא. גת שמנים מתייחס בהקשר זה לגן הזיתים ולמקומות קדושים סמוכים. כנסיית כל העמים, המכונה גם בזיליקת היגון, והמערה הם אתרים נפרדים. אין להניח ששעות הביקור או תנאי הכניסה זהים.'],
+  ['מהן שעות הפתיחה של גת שמנים ושל הכנסייה?', 'המקורות מפרידים בין המתחם, הכנסייה והמערה ומפרסמים שעות עונתיות שונות. בטבלת הביקור בעמוד מוצגים נתוני הקוסטודיה ומרכז המידע הנוצרי, לרבות ההבדלים ביניהם. יש לאשר את השעות ואת הכניסה למקום המדויק לפני היציאה, במיוחד בחגים ובזמני תפילה.'],
+  ['האם הכניסה חינם?', 'לא אותר במקורות שנבדקו מחירון עדכני שמאשר כניסה חופשית לכל אחד מהאתרים והשירותים. יש לברר עם המפעיל אם נדרש תשלום או תיאום למקום ולפעילות שבחרתם; תיאום תפילה וסיור מודרך אינם בהכרח ביקור רגיל.'],
+  ['איפה נמצא גן גת שמנים?', 'למרגלות הר הזיתים בירושלים, באזור נחל קדרון, לצד כנסיית כל העמים. השתמשו בקישור למפה להתמצאות ואשרו את הכניסה הפעילה; סיכת מפה אינה אישור לחניה או להורדת נוסעים.'],
+  ['האם יש מסלול נגיש לכיסאות גלגלים?', 'אין בידינו בדיקת נגישות עדכנית של כניסות, מדרגות ושירותים. יש לברר את המסלול וההתאמות הנדרשות מול המפעיל מראש; אין כאן הבטחה למסלול שטוח, לספסלים או להגעה ברכב עד השער.'],
+  ['איך מתאמים תפילה או ביקור קבוצה?', 'משרד הצליינים הפרנציסקאני (FPO) מרכז הזמנות למיסות, שעות קודש ותפילות במקומות שבאחריות הקוסטודיה. בדקו את תנאי התיאום ישירות מול המשרד; שעות המשרד אינן שעות הפתיחה של הגן או הכנסייה.'],
+  ['איך מבקרים בכבוד?', 'שמרו על שקט ולבוש מכבד, אל תפריעו למתפללים ופעלו לפי השילוט והנחיות הצוות. בקשו רשות לפני צילום אנשים או טקסים. אין לקטוף, לטפס על העצים או לחצות מחסומים.'],
+  ['האם אפשר לשלב אתרים נוספים?', 'המערה, קבר מרים ואתרים אחרים בהר הזיתים דורשים בדיקה נפרדת של הכניסה והפעילות. אין כאן מסלול הליכה מדוד או הבטחה שאפשר לשלבם בזמן קצר.']
 ];
 const attractionSchema = {
   '@context': 'https://schema.org',
-  '@type': ['TouristAttraction', 'Church', 'Place'],
-  '@id': `${canonical}#attraction`,
-  'name': 'Gethsemane',
-  'alternateName': ['גת שמנים', 'Gethsemane Garden', 'Garden of Gethsemane', '客西马尼园', 'Church of All Nations', 'Basilica of the Agony'],
-  'description': description,
-  'url': canonical,
-  'image': [heroImage],
-  'isAccessibleForFree': true,
-  'telephone': '+972 2-626-6444',
-  'openingHours': 'Mo-Su 08:00-18:00',
-  'openingHoursSpecification': [
-    {
-      '@type': 'OpeningHoursSpecification',
-      'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      'opens': '08:00',
-      'closes': '18:00'
-    }
-  ],
-  'address': {
-    '@type': 'PostalAddress',
-    'streetAddress': 'Jericho Road',
-    'addressLocality': 'Jerusalem',
-    'addressRegion': 'Jerusalem District',
-    'addressCountry': 'IL',
-    'postalCode': '91190'
-  },
-  'geo': { '@type': 'GeoCoordinates', 'latitude': 31.7717, 'longitude': 35.2394 },
-  'hasMap': mapsUrl,
-  'aggregateRating': {
-    '@type': 'AggregateRating',
-    'ratingValue': '4.8',
-    'reviewCount': '14645',
-    'bestRating': '5',
-    'worstRating': '1'
-  },
-  'sameAs': [mapsUrl, govtTourismUrl, wikiGethsemane, wikiChurch]
+  '@type': 'TouristAttraction',
+  '@id': `${canonical}#garden`,
+  name: 'Garden of Gethsemane',
+  alternateName: ['גן גת שמנים', 'Garden of Olives'],
+  description: 'גן הזיתים בגת שמנים, למרגלות הר הזיתים בירושלים; מקום קדוש במסורת הנוצרית.',
+  url: canonical,
+  address: { '@type': 'PostalAddress', addressLocality: 'Jerusalem' },
+  geo: { '@type':'GeoCoordinates', latitude:31.7793098, longitude:35.2397801 },
+  hasMap: mapsUrl
+};
+const relatedPlaces = {
+  '@context': 'https://schema.org', '@graph': [
+    { '@type':'Church', '@id':`${canonical}#church`, name:'Church of All Nations', alternateName:['כנסיית כל העמים','Basilica of the Agony'], address:{'@type':'PostalAddress',addressLocality:'Jerusalem'} },
+    { '@type':'Place', '@id':`${canonical}#grotto`, name:'Grotto of Gethsemane', alternateName:'מערת גת שמנים', address:{'@type':'PostalAddress',addressLocality:'Jerusalem'} },
+    { '@type':'WebPage', '@id':`${canonical}#webpage`, url:canonical, name:title, description, inLanguage:'he', about:{'@id':`${canonical}#garden`}, mentions:[{'@id':`${canonical}#church`},{'@id':`${canonical}#grotto`}] }
+  ]
 };
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -74,15 +53,8 @@ const websiteSchema = {
   'url': site,
   'inLanguage': 'he'
 };
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  'itemListElement': [
-    { '@type': 'ListItem', 'position': 1, 'name': 'בית', 'item': site },
-    { '@type': 'ListItem', 'position': 2, 'name': 'גת שמנים', 'item': canonical }
-  ]
-};
 ---
+<!doctype html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
@@ -103,160 +75,95 @@ const breadcrumbSchema = {
   <meta property="og:url" content={canonical} />
   <meta property="og:locale" content="he_IL" />
   <meta property="og:image" content={heroImage} />
-  <meta property="og:image:alt" content="גת שמנים (Gethsemane) בירושלים" />
+  <meta property="og:image:alt" content="איור מקורי וסמלי של ענפי זית; אינו תצלום של גת שמנים" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={heroImage} />
+  <meta name="twitter:image" content={heroImage} /><meta name="twitter:image:alt" content="איור מקורי וסמלי של ענפי זית; אינו תצלום של גת שמנים" />
   <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
   <script is:inline define:vars={{ ga: 'G-HXM22WWPKP' }}>
     window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ga);
   </script>
-  <script type="application/ld+json" set:html={JSON.stringify(attractionSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(attractionSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(relatedPlaces)} />
 </head>
 <body>
-  <header class="absolute inset-x-0 top-0 z-20 text-white"><div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-6"><a href="#top" class="flex items-center gap-3 font-bold tracking-wide"><img src="/icons/logo.svg" class="h-10 w-10" alt="סמל גת שמנים" /><span>גת שמנים</span></a><nav class="hidden gap-7 text-sm md:flex"><a href="#story" class="opacity-80 hover:opacity-100">הסיפור</a><a href="#weather" class="opacity-80 hover:opacity-100">מזג אוויר</a><a href="#visit" class="opacity-80 hover:opacity-100">תכנון ביקור</a><a href="#services" class="opacity-80 hover:opacity-100">שירותים</a><a href="#around" class="opacity-80 hover:opacity-100">בסביבה</a></nav><a class="rounded-full border border-white/40 px-4 py-2 text-sm hover:bg-white hover:text-olive" href="#map">איך מגיעים</a></div></header>
-  <main id="top">
-    <section class="relative isolate flex min-h-[720px] items-end overflow-hidden bg-olive"><img src="/images/gethsemane-garden.jpg" alt="גן הזיתים בגת שמנים בירושלים" class="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-75" /><div class="absolute inset-0 -z-10 bg-gradient-to-t from-[#112b26] via-[#193c35]/55 to-[#193c35]/15"></div><div class="mx-auto w-full max-w-7xl px-5 pb-20 pt-44"><div class="max-w-3xl reveal"><p class="mb-5 flex items-center gap-2 text-sm tracking-[.15em] text-gold"><span class="h-px w-10 bg-gold"></span> למרגלות הר הזיתים · ירושלים</p><h1 class="display text-6xl leading-[.95] text-white md:text-8xl">מקום שבו<br /><em class="not-italic text-gold">הזמן מאט</em></h1><p class="mt-8 max-w-xl text-lg leading-8 text-white/80">בין עצי זית עתיקים, שבילי אבן וצל כנסיית כל העמים — גת שמנים מזמינה לעצור, להתבונן ולהקשיב.</p><div class="mt-9 flex flex-wrap gap-3"><a href="#visit" class="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-bold text-olive transition hover:-translate-y-0.5"><span>לתכנן ביקור</span><ArrowLeft size={18} /></a><a href="#story" class="rounded-full border border-white/30 px-6 py-3 text-white hover:bg-white/10">לגלות את המקום</a></div></div></div><div class="absolute bottom-6 left-5 text-xs text-white/50">31°46′18″N · 35°14′22″E</div></section>
+  <a class="skip-link" href="#main-content">דילוג לתוכן</a>
+  <header class="site-header"><div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5"><a href="#top" class="flex min-w-0 items-center gap-3 font-bold"><img src="/icons/logo.svg" width="40" height="40" alt="" /><span>גת שמנים</span></a><details id="section-menu" class="section-menu"><summary>תפריט ביקור</summary><nav aria-label="תוכן העמוד">{[['story','על המקום'],['history','היסטוריה'],['visit','שעות ותנאי כניסה'],['weather','מזג אוויר'],['map','הגעה'],['services','נגישות ושירותים'],['around','מקומות נפרדים'],['faq','שאלות נפוצות'],['sources','מקורות'],['privacy','פרטיות']].map(([id,label])=><a href={'#'+id}>{label}</a>)}</nav></details></div></header>
+  <main id="main-content"><div id="top"></div>
+    <section class="relative isolate flex min-h-[720px] items-end overflow-hidden bg-olive"><img src="/images/olive-illustration.svg" alt="איור סמלי מקורי של ענפי זית, לא תצלום של גת שמנים" width="1200" height="800" fetchpriority="high" class="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-75" /><div class="absolute inset-0 -z-10 bg-gradient-to-t from-[#112b26] via-[#193c35]/55 to-[#193c35]/15"></div><div class="mx-auto w-full max-w-7xl px-5 pb-20 pt-44"><div class="max-w-3xl reveal"><p class="mb-5 flex items-center gap-2 text-sm tracking-[.15em] text-gold"><span class="h-px w-10 bg-gold"></span> למרגלות הר הזיתים · ירושלים</p><h1 class="display text-6xl leading-[.95] text-white md:text-8xl">גן גת שמנים<br /><em class="not-italic text-gold">ירושלים</em></h1><p class="mt-8 max-w-xl text-lg leading-8 text-white/80">גן הזיתים, כנסיית כל העמים והמערה הם מקומות קשורים אך נפרדים. הכירו את המסורת ובדקו את שעות הגישה למקום המדויק לפני הביקור.</p><div class="mt-9 flex flex-wrap gap-3"><a href="#visit" class="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-bold text-olive transition hover:-translate-y-0.5"><span>לתכנן ביקור</span><ArrowLeft size={18} /></a><a href="#story" class="rounded-full border border-white/30 px-6 py-3 text-white hover:bg-white/10">לגלות את המקום</a></div></div></div><div class="absolute bottom-6 left-5 right-5 text-sm text-white/80">איור סמלי מקורי של ענפי זית — אינו תצלום או מפת האתר. <a class="underline" href="#image-credits">פרטי האיור</a></div></section>
 
-    <section id="story" class="texture"><div class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:grid-cols-[.85fr_1.15fr] md:items-center"><div><p class="mb-4 text-sm font-bold tracking-widest text-olive2">הסיפור של המקום</p><h2 class="display text-5xl leading-tight text-olive md:text-6xl">גן קטן,<br /><span class="text-gold">היסטוריה גדולה</span></h2></div><div class="space-y-5 text-lg leading-9 text-ink/75"><p>גת שמנים — או בגת שמנא, “בית הבד” — הוא גן זיתים סמוך לנחל קדרון. לפי המסורת הנוצרית, כאן התפלל ישו בלילה שלפני מעצרו.</p><p>הגן ניצב לצד <strong class="text-olive">כנסיית כל העמים</strong>, שבנויה מעל סלע התפילה ומוארת באור עמוק ושקט. מעבר לסמליות, זהו מרחב ירושלמי חי: עצי זית, פרחים עונתיים ואבן מקומית שמבקשים מהמבקר להאט.</p><div class="grid grid-cols-2 gap-3 pt-4"><div class="border-r-2 border-gold pr-4"><p class="text-3xl font-bold text-olive">{ratingValue}</p><p class="text-sm">דירוג מבקרים · {reviewCount} ביקורות</p><p class="mt-2 text-xs leading-5 text-ink/55" dir="ltr">评分与评价数同步自谷歌地图（Google Maps）用户评价 · {syncMonth} · <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="text-olive underline">点击查看谷歌地图全部评价↗</a></p></div><div class="border-r-2 border-gold pr-4"><p class="text-3xl font-bold text-olive">∞</p><p class="text-sm">רגעים של שקט</p></div></div></div></div></section>
+    <section id="story" class="texture"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><p class="mb-4 text-sm font-bold text-olive2">על המקום</p><h2 class="display mb-6 text-4xl text-olive md:text-5xl">גן הזיתים ומקומות התפילה</h2><div class="max-w-3xl space-y-5 text-lg leading-9"><p>גן גת שמנים נמצא למרגלות הר הזיתים, סמוך לנחל קדרון. במסורת הנוצרית הוא קשור לתפילת ישו לפני מעצרו. זהו מקום של פולחן וזיכרון, ולא רק אתר לטיול.</p><p>הקוסטודיה הפרנציסקאנית מבחינה בין מטע הזיתים, <a href="#church" class="underline">בזיליקת היגון / כנסיית כל העמים</a> ו<a href="#grotto" class="underline">מערת גת שמנים</a>. שמותיה של הכנסייה אינם שמות חלופיים לגן.</p><p class="rounded-2xl bg-white p-5">Google Maps: <bdi>{ratingValue} / 5</bdi> · <bdi>{reviewCount}</bdi> ביקורות · נבדק ב־<bdi>{syncDate}</bdi>. הנתונים הם צילום מצב של צד שלישי, אינם ביקורות שנאספו באתר זה ועשויים להשתנות. <a class="underline" href={mapsUrl}>לרשומה העדכנית במפות</a>.</p></div></div></section>
 
-    <section id="history" class="bg-[#efe9dd]"><div class="mx-auto max-w-7xl gap-12 px-5 py-24 md:grid-cols-[.8fr_1.2fr] md:items-start grid"><div><p class="mb-4 text-sm font-bold tracking-widest text-olive2">היסטוריה, מסורת ואגדה</p><h2 class="display text-5xl leading-tight text-olive md:text-6xl">שורשים של<br /><span class="text-gold">אלפיים שנה</span></h2></div><div class="space-y-5 text-lg leading-9 text-ink/75"><p>גת שמנים (בארמית: בית הבד) — שם שמעיד על ייעודו הקדום: גת להכנת שמן זית. לאורך הדורות היה המקום גן זיתים, ועצי זית עתיקים עדיין ניצבים בו; לפי המסורת המקומית, חלק מהעצים משמרים רצף עתיק, וגילם מגיע לכמה מאות שנים.</p><p>הכנסייה הבולטת כיום, <strong class="text-olive">כנסיית כל העמים</strong> (בזיליקת היגון), נבנתה ב-1919–1924 מעל שרידי כנסיות קודמות — ביזנטיות וצלבניות — סביב “סלע התפילה”, המסורת למקום שבו התפלל ישו בלילה שלפני מעצרו. חזיתה עוטרה בשנים-עשר גביעי אומה המסמלים את “כל העמים”, ופנים הכנסייה שקוע באור כחול-סגול המקנה תחושת דממה.</p><p>בנחל קדרון הסמוך שוכנות מערות קבורה עתיקות — <strong class="text-olive">קבר מרים, קבר זכריה וקבר אבשלום</strong> — המעידות על הרצף ההיסטורי של המקום כאתר תפילה וזיכרון. בימינו גת שמנים הוא אתר עלייה לרגל ומרחב של התבוננות, המשלב סיפור, אמנות ואקולוגיה מקומית.</p></div></div></section>
+    <section id="history" class="bg-[#efe9dd]"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><p class="mb-4 text-sm font-bold text-olive2">היסטוריה ומסורת</p><h2 class="display mb-6 text-4xl text-olive md:text-5xl">מסורת נוצרית ושכבות היסטוריות</h2><div class="max-w-3xl space-y-5 text-lg leading-9"><p>הקוסטודיה מתארת את גת שמנים כמקום המנציח את תפילת ישו ואת מעצרו, לפי המסורת הנוצרית. המסורת על עצי הזית אינה מדידת גיל מדעית של כל עץ הקיים היום.</p><p>לפי תולדות האתר שמפרסמת הקוסטודיה, הכנסייה המודרנית נחנכה ב־<bdi>1924</bdi> ותוכננה בידי אנטוניו ברלוצי, על גבי שרידי כנסיות קודמות. <a href={operatorUrl} class="underline">לרקע ההיסטורי באתר המפעיל</a>.</p></div></div></section>
 
-    <section id="weather" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-10"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">מזג אוויר בירושלים</p><h2 class="display text-5xl text-olive md:text-6xl">כדאי לדעת לפני שיוצאים</h2><p class="mt-4 max-w-xl leading-7 text-ink/65">תחזית עדכנית ושבועית לירושלים וסביבות גת שמנים — כדי לדעת אם להביא מטריה ומתי כדאי לצאת.</p></div><div class="grid gap-4 md:grid-cols-[1.05fr_1.95fr]"><div id="weather-now" class="rounded-2xl bg-white p-7 shadow-sm text-ink/70">טוען נתוני מזג אוויר…</div><div id="weather-days" class="grid grid-cols-2 gap-3 rounded-2xl bg-white p-7 shadow-sm sm:grid-cols-3 lg:grid-cols-7"></div></div><div id="weather-advice" class="mt-4"></div><p id="weather-note" class="mt-4 text-xs text-ink/45"></p></div></section>
+    <section id="weather" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-10"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">מזג אוויר בירושלים</p><h2 class="display text-5xl text-olive md:text-6xl">כדאי לדעת לפני שיוצאים</h2><p class="mt-4 max-w-xl leading-7 text-ink/65">נתוני מודל לירושלים מאת Open-Meteo, לא מדידה בגן ולא אישור שהאתר פתוח. נתונים חסרים או ישנים לא יוצגו כתחזית עדכנית.</p></div><div class="grid gap-4 md:grid-cols-[1.05fr_1.95fr]"><div id="weather-now" class="rounded-2xl bg-white p-7 shadow-sm text-ink/70">טוען נתוני מזג אוויר…</div><div id="weather-days" class="grid grid-cols-2 gap-3 rounded-2xl bg-white p-7 shadow-sm sm:grid-cols-3 lg:grid-cols-7"></div></div><div id="weather-advice" class="mt-4"></div><p id="weather-note" role="status" class="mt-4 text-sm text-ink/75"></p><p class="mt-4 text-sm leading-7">נתונים: <a class="underline" href="https://open-meteo.com/">Open-Meteo</a> · <a class="underline" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. בדקו <a class="underline" href="https://ims.gov.il/">אזהרות של השירות המטאורולוגי</a>. <button id="weather-retry" type="button" class="ml-2 rounded border border-olive px-3 py-2">ניסיון נוסף</button></p><noscript><p>לטעינת תחזית נדרש JavaScript. בדקו את המקורות המקושרים לתחזית ולאזהרות.</p></noscript></div></section>
 
-    <section class="bg-olive py-5"><div class="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-3"><div class="overflow-hidden rounded-2xl"><img src="/images/church-garden.jpg" alt="כנסיית כל העמים לצד גת שמנים" class="h-72 w-full object-cover transition duration-500 hover:scale-105" /></div><div class="overflow-hidden rounded-2xl md:translate-y-10"><img src="/images/olive-trees.jpg" alt="עצי זית בגן גת שמנים" class="h-72 w-full object-cover transition duration-500 hover:scale-105" /></div><div class="overflow-hidden rounded-2xl"><img src="/images/historic-garden.jpg" alt="תצלום היסטורי של גת שמנים" class="h-72 w-full object-cover transition duration-500 hover:scale-105" /></div></div></section>
+    <section id="image-credits" class="bg-olive"><div class="mx-auto max-w-7xl px-5 py-10 text-white"><h2 class="mb-3 text-xl font-bold">איור, לא תצלום</h2><p class="max-w-3xl leading-8">איור ענפי הזית בעמוד ובתמונת השיתוף נוצר עבור המדריך, ללא שימוש בתצלומי האתר או ביצירות אמנות מהכנסייה. זהו דימוי סמלי, לא תיעוד של הגן ולא תרשים ניווט. האיור זמין תחת <a class="underline" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>.</p></div></section>
 
-    <section id="visit" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="mb-4 text-sm font-bold tracking-widest text-olive2">תכנון ביקור</p><h2 class="display text-5xl text-olive md:text-6xl">כל מה שצריך<br /><span class="text-gold">לדעת לפני שמגיעים</span></h2></div><p class="max-w-sm leading-7 text-ink/65">ביקור קצר בגת שמנים משתלב נפלא במסלול של יום סביב העיר העתיקה והר הזיתים.</p></div><div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"><article class="rounded-2xl bg-white p-7 shadow-sm"><Clock3 class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">שעות & קצב</h3><p class="leading-7 text-ink/70">הגן פתוח בדרך כלל מדי יום, סביב 08:00–18:00. הקדישו 30–60 דקות; בשעות הבוקר האור רך והאווירה שקטה יותר.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Ticket class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">כניסה ועלויות</h3><p class="leading-7 text-ink/70">הכניסה לגן ללא תשלום. כניסה לכנסייה או סיור מודרך עשויים להשתנות לפי שעות תפילה ואירועים — בדקו באתר הרשמי.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Car class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">חניה</h3><p class="leading-7 text-ink/70">החניה באזור מוגבלת. עדיף להגיע בתחבורה ציבורית או להחנות באזור שער האריות / הר הזיתים ולהמשיך ברגל.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Footprints class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">לבוש & נגישות</h3><p class="leading-7 text-ink/70">זהו אתר דתי פעיל: לבשו בגדים מכבדים ושמרו על שקט. השבילים בחלקם מרוצפים, אך קיימים שיפועים ואבנים לא אחידות.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><MapPin class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">איך מגיעים</h3><p class="leading-7 text-ink/70">מגיעים דרך דרך יריחו, סמוך לכנסיית כל העמים. מהעיר העתיקה אפשר ללכת דרך שער האריות; הנסיעה במונית קצרה ונוחה.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Utensils class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">מה אוכלים ליד</h3><p class="leading-7 text-ink/70">אחרי הביקור, המשיכו לרובע המוסלמי ולשוק מחנה יהודה: חומוס, פלאפל, מאפים ירושלמיים וקפה עם הל.</p></article></div></div></section>
+    <section id="visit" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><p class="mb-4 text-sm font-bold text-olive2">תכנון ביקור · נבדק ב־29.10.2026</p><h2 class="display mb-6 text-4xl text-olive md:text-5xl">שעות פתיחה: יש לבדוק איזה מקום</h2><p class="mb-6 max-w-3xl leading-8">יש הבדלים בין פרסומי המפעיל לבין מרכז המידע הנוצרי (CIC), שעמוד השעות שלו מעודכן ל־15.9.2026. המפה שסקרנו לא הציגה שעות. הנתונים להלן הם פרסומים לעיון, לא אישור שהאתרים פתוחים היום; חגים, תפילות ושינויים בגישה עלולים להשפיע.</p><p class="mb-3 text-sm">במסך צר אפשר לגלול את הטבלה לצדדים.</p><div class="hours-table" tabindex="0" role="region" aria-label="טבלת שעות פתיחה; אפשר לגלול לצדדים"><table><caption>פרסומי שעות נפרדים — יש לאשר ישירות לפני היציאה</caption><thead><tr><th scope="col">מקום ומקור</th><th scope="col">אפריל–ספטמבר</th><th scope="col">אוקטובר–מרץ</th><th scope="col">מה חשוב לבדוק</th></tr></thead><tbody><tr><th scope="row">המתחם — <a href={operatorUrl}>קוסטודיה</a></th><td><bdi>08:00–18:00</bdi></td><td><bdi>08:00–17:00</bdi></td><td>הפרסום מתייחס למתחם; לא נמצא בו לוח עצמאי לגן בלבד.</td></tr><tr id="church"><th scope="row">כנסיית כל העמים — <a href={cicUrl}>CIC</a></th><td><bdi>07:30–18:00</bdi></td><td><bdi>07:30–17:00</bdi></td><td>פתיחה חצי שעה לפני פרסום הקוסטודיה; כניסה אחרונה 10 דקות לפני הסגירה.</td></tr><tr id="grotto"><th scope="row">המערה — <a href={operatorUrl}>קוסטודיה</a></th><td><bdi>08:00–12:00</bdi><br/><bdi>14:30–17:00</bdi></td><td><bdi>08:00–12:00</bdi><br/><bdi>14:30–17:00</bdi></td><td>בימי חמישי וראשון מצוינת סגירה ב־<bdi>16:00</bdi>.</td></tr><tr><th scope="row">המערה — <a href={cicUrl}>CIC</a></th><td><bdi>07:30–12:00</bdi><br/><bdi>14:30–18:00</bdi></td><td><bdi>07:30–12:00</bdi><br/><bdi>14:30–17:00</bdi></td><td>כניסה אחרונה 10 דקות לפני סגירת הצהריים והערב. פרסום זה שונה גם בשעת הסגירה בקיץ; יש לאשר את החריגים.</td></tr></tbody></table></div><p class="mt-5 max-w-3xl leading-8">אל תסיקו משעות מיסה או תפילה מיוחדת ששעות התיירות הורחבו. מידע מהמתחם: <a href="tel:+97226266444" class="underline"><bdi>+972 2 626 6444</bdi></a>, כפי שמופיע במקורות; יש לוודא את ההסדר למקום המדויק.</p><div class="mt-8 grid gap-5 md:grid-cols-2"><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">מחיר ותנאי כניסה</h3><p class="leading-8">לא אותר מחירון עדכני שמאשר כניסה ללא תשלום לכל חלקי המתחם והשירותים. בררו עם המפעיל אם נדרש תשלום או תיאום לפעילות שבחרתם. האתר הזה אינו מוכר כרטיסים.</p></article><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">תפילות וקבוצות</h3><p class="leading-8"><a href="https://www.cicts.org/en/fpo" class="underline">משרד הצליינים הפרנציסקאני (FPO)</a> מרכז תיאום מיסות, שעות קודש ותפילות. בדקו את תנאי ההזמנה ישירות מולו; שעות עבודת המשרד אינן שעות האתר.</p></article></div></div></section>
 
-    <section id="around" class="bg-[#e7dfd0]"><div class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:grid-cols-2"><div><p class="mb-4 text-sm font-bold tracking-widest text-olive2">מסביב לגת שמנים</p><h2 class="display text-5xl text-olive">יום שלם<br /><span class="text-gold">בהר הזיתים</span></h2><div class="mt-8 divide-y divide-olive/15">{['כנסיית כל העמים — דקה אחת','קבר מרים — 3 דקות','כנסיית דומינוס פלוויט — 12 דקות בעלייה','העיר העתיקה ושער האריות — 15 דקות הליכה'].map((item) => <div class="flex items-center justify-between py-4"><span>{item}</span><ArrowLeft size={17} class="text-gold" /></div>)}</div></div><div id="map" class="overflow-hidden rounded-3xl bg-olive shadow-2xl"><iframe title="מפת גת שמנים בירושלים" src="https://www.google.com/maps?q=Gethsemane,+Jerusalem&hl=he&gl=IL&output=embed" class="h-[420px] w-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="flex items-center justify-between p-5 text-white"><div><p class="font-bold">גת שמנים</p><p class="text-sm text-white/60">Q6HQ+PW, ירושלים</p></div><a href="https://maps.app.goo.gl/int1LT9WUDdZW2u57" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-sm text-gold">פתיחה במפות <ExternalLink size={15} /></a></div></div></div></section>
+    <section id="around" class="bg-[#e7dfd0]"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><p class="mb-4 text-sm font-bold text-olive2">מקומות קשורים, תנאי ביקור נפרדים</p><h2 class="display mb-6 text-4xl text-olive md:text-5xl">הגן, הכנסייה והמערה</h2><div class="grid gap-5 md:grid-cols-3"><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">גן הזיתים</h3><p class="leading-8">המקום המזוהה במסורת עם תפילת ישו. בדקו את הכניסה הפעילה ואת הגישה לשבילי הביקור; סיור בגן אינו אישור להיכנס לכל שטח סמוך.</p></article><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">כנסיית כל העמים</h3><p class="leading-8">נקראת גם בזיליקת היגון. הכניסה לבניין כפופה לפעילות הדתית ולהנחיות הצוות; אין להחליף בין שמה לבין שם הגן.</p></article><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">מערת גת שמנים</h3><p class="leading-8">מקום נפרד לצד קבר מרים, לפי תיאור הקוסטודיה. יש לה הפסקת צהריים ופרסומי שעות משלה; ראו את ההבדלים בטבלת השעות.</p></article></div><div id="map" class="mt-8 rounded-2xl bg-olive p-7 text-white"><h3 class="mb-3 text-xl font-bold">הגעה והתמצאות</h3><p class="max-w-3xl leading-8">גת שמנים נמצאת למרגלות הר הזיתים בירושלים. <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="underline text-gold">פתחו את רשומת Google Maps</a> להתמצאות, ובדקו בנפרד את הכניסה הפעילה, התחבורה בחזרה וכללי הורדת הנוסעים. אין כאן אישור לחניה, מסלול אוטובוס או זמן הליכה מדוד.</p><p class="mt-3 text-sm">המפה נפתחת באתר חיצוני של Google רק בלחיצה על הקישור.</p></div></div></section>
 
-    <section id="services" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-14"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">שירותים ומתקנים בסביבה</p><h2 class="display text-5xl text-olive md:text-6xl">מה יש<br /><span class="text-gold">בסביבה הקרובה</span></h2><p class="mt-4 max-w-2xl leading-7 text-ink/65">סקירה ניטרלית ואובייקטיבית של סוגי השירותים שפזורים סביב האתר — ללא המלצה על עסקים מסוימים. התיאורים משקפים סוגי מתקנים נפוצים באזור ירושלים ויכולים להשתנות בין עונה לעונה.</p></div><div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"><article class="rounded-2xl bg-white p-7 shadow-sm"><Bath class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">שירותים ומתחמי תפילה</h3><p class="leading-7 text-ink/70">לצד האתרים המרכזיים מפוזרים מתחמי שירותים ותאי תפילה ציבוריים; מומלץ להיעזר בשילוט באתר ולהגיע מוכנים בשעות העומס.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Car class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">חניה</h3><p class="leading-7 text-ink/70">חניה מסודרת נמצאת במתחמים סמוכים ולאורך הצירים הראשיים. החניה באזור מבוקשת בשעות השיא — רבים בוחרים בתחבורה ציבורית או בהגעה מרחוק.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Utensils class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">הסעדה</h3><p class="leading-7 text-ink/70">בסביבה פזורים בתי קפה, מאפיות ומסעדות במגוון רמות וסגנונות; הרבעים הסמוכים (העיר העתיקה, הר הזיתים) מציעים גם אפשרויות כשרות ומקומיות.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><BedDouble class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">לינה</h3><p class="leading-7 text-ink/70">ברחבי ירושלים מגוון רחב של לינה — בתי מלון, אכסניות ואירוח משפחתי. מומלץ להשוות ולהזמין מראש בעונות השיא ובחגים.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><ShoppingBag class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">קניות וצרכנות</h3><p class="leading-7 text-ink/70">חנויות מזכרות, מרכולים ובתי מרקחת נמצאים במרחק הליכה או נסיעה קצרה; מומלץ להצטייד במים ובציוד בסיסי לפני ההגעה לאתר.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Fuel class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">דלק וטעינה</h3><p class="leading-7 text-ink/70">תחנות דלק ועמדות טעינה לרכבים חשמליים פזורות ברחבי העיר. ניתן לתכנן עצירת תדלוק או טעינה בדרך, בייחוד ביציאה לטיול ארוך.</p></article></div></div></section>
+    <section id="services" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><p class="mb-4 text-sm font-bold text-olive2">נגישות ושירותים</p><h2 class="display mb-6 text-4xl text-olive md:text-5xl">מה לברר מראש</h2><div class="grid gap-5 md:grid-cols-3"><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">כניסה ודרך נגישה</h3><p class="leading-8">אין בידינו סקר עדכני של מדרגות, שיפועים או מסלול לכיסא גלגלים. בקשו מידע על הכניסה הנכונה ועל הדרך לחלק הספציפי שבו תרצו לבקר.</p></article><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">מים, שירותים ומנוחה</h3><p class="leading-8">לא אומתו זמינות מי שתייה, שירותים או ספסלים. שאלו על ההתאמות הדרושות לכם והיערכו למנוחה ולמים, בלי להסתמך על הבטחה למתקנים באתר.</p></article><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">חניה ותחבורה</h3><p class="leading-8">בדקו הסדרי חניה, מקום הורדה ואיסוף ודרך חזרה עם ספק התחבורה. אין במדריך המלצה לחניון מסוים או אישור שחניה ברחוב מותרת.</p></article></div></div></section>
 
-    <section id="routes" class="bg-[#efe9dd]"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-14"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">מסלולי ביקור מומלצים</p><h2 class="display text-5xl text-olive md:text-6xl">בוחרים<br /><span class="text-gold">את הקצב שלכם</span></h2></div><div class="grid gap-6 md:grid-cols-2"><article class="rounded-2xl bg-white p-8 shadow-sm"><h3 class="mb-4 text-2xl font-bold text-olive">מסלול חצי יום</h3><ol class="list-decimal space-y-3 pr-5 text-lg leading-8 text-ink/75"><li>כניסה לגן הזיתים וסיור בין העצים העתיקים (כ-30 דקות).</li><li>כנסיית כל העמים וסלע התפילה (כ-20 דקות).</li><li>תצפית קצרה על נחל קדרון וקבר מרים (כ-15 דקות).</li><li>הפסקת קפה קצרה באחד מבתי הקפה בסביבה.</li></ol></article><article class="rounded-2xl bg-white p-8 shadow-sm"><h3 class="mb-4 text-2xl font-bold text-olive">מסלול יום שלם</h3><ol class="list-decimal space-y-3 pr-5 text-lg leading-8 text-ink/75"><li>כולל את מסלול חצי היום לעיל.</li><li>עלייה להר הזיתים לתצפית על הר הבית והעיר העתיקה.</li><li>ירידה ברגל בשער האריות אל הרבעים (המוסלמי, הנוצרי).</li><li>ויה דולורוזה ותחנות העלייה לרגל.</li><li>חזרה דרך הגן לקראת השקיעה.</li></ol></article></div></div></section>
+    <section id="routes" class="bg-[#efe9dd]"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><h2 class="display mb-6 text-4xl text-olive">תכנון בלי לוח זמנים קשיח</h2><ol class="max-w-3xl list-decimal space-y-4 pr-5 text-lg leading-9"><li>בחרו אם ברצונכם לבקר בגן, בכנסייה או במערה — ובדקו כל מקום בנפרד.</li><li>אשרו שעות, תפילות, הפסקות וכניסה אחרונה לפני היציאה.</li><li>התאימו את משך הביקור ואת המסלול לצורכי הקבוצה ולתנאי הגישה באותו יום.</li><li>אם מוסיפים אתרים בהר הזיתים או בעיר העתיקה, בדקו עבורם שעות ותחבורה בנפרד. אין הבטחה למסלול קצר או לחזרה סמוך לשקיעה.</li></ol></div></section>
 
-    <section id="by-type" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-14"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">לפי סוג המטיילים</p><h2 class="display text-5xl text-olive md:text-6xl">שלוש גישות<br /><span class="text-gold">לביקור</span></h2></div><div class="grid gap-4 md:grid-cols-3"><article class="rounded-2xl bg-white p-7 shadow-sm"><Users class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">משפחות</h3><p class="leading-7 text-ink/70">מסלול קצר ושטוח, הרבה צל ועצירות תכופות. אפשר לשלב משחק חיפוש עצי זית וסיפורים קצרים שמחברים ילדים למקום.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Camera class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">צילום וטבע</h3><p class="leading-7 text-ink/70">השעות הטובות ביותר הן הזריחה והשעות לפני שקיעה. העצים, האבן והאור הכחול שבכנסייה מספקים קומפוזיציות עשירות.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Footprints class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">נגישות וקצב נמוך</h3><p class="leading-7 text-ink/70">שבילים מרוצפים ומוצלים, ספסלי ישיבה וגישה ברכב עד לכניסה. מומלץ להימנע משעות השיא ולתכנן עצירות מנוחה.</p></article></div></div></section>
+    <section id="by-type" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><h2 class="display mb-6 text-4xl text-olive">לפי צורכי המבקרים</h2><div class="grid gap-5 md:grid-cols-3"><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">משפחות</h3><p class="leading-8">הסבירו לילדים שזהו מקום תפילה פעיל, וקבעו קצב מתאים. אין הבטחה למסלול שטוח או לפעילות משחק בתוך המתחם.</p></article><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">צילום</h3><p class="leading-8">בדקו את כללי הצילום בכל חלק ואת ההרשאה לציוד מקצועי. בקשו רשות לפני צילום אנשים וטקסים; זריחה או שקיעה אינן אישור כניסה.</p></article><article class="rounded-2xl bg-white p-7"><h3 class="mb-3 text-xl font-bold">צרכים מיוחדים</h3><p class="leading-8">תאמו מראש מידע על מדרגות, מרחק ההליכה והאפשרות לנוח. תמונות ישנות או תיאור כללי אינם תחליף לבדיקת נגישות עדכנית.</p></article></div></div></section>
 
-    <section id="seasons" class="bg-[#efe9dd]"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-12"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">אסטרטגיית ביקור לפי עונות</p><h2 class="display text-5xl text-olive md:text-6xl">מתי<br /><span class="text-gold">כדאי לבוא</span></h2><p class="mt-4 max-w-2xl leading-7 text-ink/65">ירושלים בעלת אקלים ים-תיכוני: קיצים חמים ויבשים, חורפים מתונים וגשומים לפרקים. הטבלה מבוססת על דפוסי אקלים אופייניים לאזור ומסייעת לתכנן ביקור נוח.</p></div><div class="overflow-x-auto rounded-2xl bg-white shadow-sm"><table class="w-full min-w-[720px] text-right text-sm"><thead class="bg-olive text-white"><tr><th class="px-5 py-4 font-bold">עונה</th><th class="px-5 py-4 font-bold">מזג אוויר</th><th class="px-5 py-4 font-bold">אור וצילום</th><th class="px-5 py-4 font-bold">עומס מבקרים</th><th class="px-5 py-4 font-bold">המלצה</th></tr></thead><tbody class="divide-y divide-olive/10 text-ink/75"><tr><td class="px-5 py-4 font-bold text-olive">אביב (מרץ–מאי)</td><td class="px-5 py-4">ממוזג ונעים, פריחה</td><td class="px-5 py-4">אור רך ונעים</td><td class="px-5 py-4">בינוני</td><td class="px-5 py-4">אידיאלי לטיולים ארוכים</td></tr><tr><td class="px-5 py-4 font-bold text-olive">קיץ (יוני–אוגוסט)</td><td class="px-5 py-4">חם ויבש, 30°C+</td><td class="px-5 py-4">שמש חזקה בצהריים</td><td class="px-5 py-4">גבוה בעיקר בבוקר</td><td class="px-5 py-4">בואו מוקדם או לקראת ערב, הרבה מים</td></tr><tr><td class="px-5 py-4 font-bold text-olive">סתיו (ספטמבר–נובמבר)</td><td class="px-5 py-4">חמים–ממוזג, נעים</td><td class="px-5 py-4">אור זהב</td><td class="px-5 py-4">בינוני</td><td class="px-5 py-4">עונה מצוינת לביקור</td></tr><tr><td class="px-5 py-4 font-bold text-olive">חורף (דצמבר–פברואר)</td><td class="px-5 py-4">מתון וגשום לפרקים, 10–15°C</td><td class="px-5 py-4">ירוק ומרענן</td><td class="px-5 py-4">נמוך</td><td class="px-5 py-4">הכינו מטריה ושכבה חמה; פחות צפוף</td></tr></tbody></table></div></div></section>
+    <section id="seasons" class="bg-[#efe9dd]"><div class="mx-auto max-w-7xl px-5 py-16 md:py-24"><h2 class="display mb-6 text-4xl text-olive">עונה, חגים ותנאי היום</h2><p class="max-w-3xl text-lg leading-9">בדקו תחזית ואזהרות עדכניות לירושלים, ובמקביל את הודעות המפעיל על תפילות וחגים. אין להסיק מעונה מסוימת שהמקום פתוח, שקט או פנוי. היערכו לחום, לגשם או למשטחים רטובים לפי תנאי היום.</p></div></section>
 
-    <section id="responsibility" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-12"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">מדריך אחריות ושמירה</p><h2 class="display text-5xl text-olive md:text-6xl">מבקרים<br /><span class="text-gold">משאירים עקבות עדינות</span></h2></div><div class="grid gap-4 md:grid-cols-2"><article class="rounded-2xl bg-white p-7 shadow-sm"><Sun class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">שקט, כבוד ולבוש הולם</h3><p class="leading-7 text-ink/70">זהו אתר תפילה פעיל. שמרו על קול נמוך, לבשו בגדים שמכסים כתפיים וברכיים, והימנעו מהפרעה למתפללים.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Droplets class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">שמירה על הטבע והמים</h3><p class="leading-7 text-ink/70">ירושלים מערכת מים רגישה. אל תקטפו זיתים או פרחים, הישארו בשבילים, והביאו בקבוק רב-פעמי כדי לצמצם פסולת.</p></article></div><p class="mt-8 max-w-3xl leading-8 text-ink/65">כאתר מדעי עצמאי וללא מטרות רווח, אנו שואפים להנגיש מידע מדויק ומכבד — ההיסטוריה, הטבע והמשמעות של המקום — ולהשאיר אותו שלם עבור מבקרים בעתיד.</p></div></section>
+    <section id="responsibility" class="bg-sand"><div class="mx-auto max-w-7xl px-5 py-24"><div class="mb-12"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">מדריך אחריות ושמירה</p><h2 class="display text-5xl text-olive md:text-6xl">מבקרים<br /><span class="text-gold">משאירים עקבות עדינות</span></h2></div><div class="grid gap-4 md:grid-cols-2"><article class="rounded-2xl bg-white p-7 shadow-sm"><Sun class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">שקט, כבוד ולבוש הולם</h3><p class="leading-7 text-ink/70">זהו אתר תפילה פעיל. שמרו על קול נמוך, לבשו בגדים שמכסים כתפיים וברכיים, והימנעו מהפרעה למתפללים.</p></article><article class="rounded-2xl bg-white p-7 shadow-sm"><Droplets class="mb-6 text-gold" size={28} /><h3 class="mb-3 text-xl font-bold text-olive">שמירה על הטבע והמים</h3><p class="leading-7 text-ink/70">אל תקטפו זיתים או פרחים, אל תטפסו על עצים ואל תחצו מחסומים. שמרו על הפסולת איתכם ופעלו לפי ההנחיות במקום.</p></article></div><p class="mt-8 max-w-3xl leading-8 text-ink/65">זהו מדריך תיירותי וחינוכי עצמאי ללא מטרות רווח. אין לו קשר רשמי למתחם או לגופים המנהלים אותו.</p></div></section>
 
-    <section class="bg-sand"><div class="mx-auto max-w-3xl px-5 py-24"><p class="mb-4 text-center text-sm font-bold tracking-widest text-olive2">שאלות נפוצות</p><h2 class="display mb-10 text-center text-5xl text-olive">לפני שיוצאים</h2><div class="space-y-3">{faqs.map(([q,a]) => <details class="group rounded-2xl bg-white p-5 shadow-sm"><summary class="flex cursor-pointer list-none items-center justify-between gap-5 font-bold text-olive"><span>{q}</span><ChevronDown class="shrink-0 transition group-open:rotate-180" size={20} /></summary><p class="mt-4 leading-7 text-ink/70">{a}</p></details>)}</div></div></section>
+    <section id="faq" class="bg-sand"><div class="mx-auto max-w-3xl px-5 py-24"><p class="mb-4 text-center text-sm font-bold tracking-widest text-olive2">שאלות נפוצות</p><h2 class="display mb-10 text-center text-5xl text-olive">לפני שיוצאים</h2><div class="space-y-3">{faqs.map(([q,a]) => <details class="group rounded-2xl bg-white p-5 shadow-sm"><summary class="flex cursor-pointer list-none items-center justify-between gap-5 font-bold text-olive"><span>{q}</span><ChevronDown class="shrink-0 transition group-open:rotate-180" size={20} /></summary><p class="mt-4 leading-7 text-ink/70">{a}</p></details>)}</div></div></section>
 
-    <section class="bg-[#efe9dd]"><div class="mx-auto max-w-3xl px-5 py-20"><p class="mb-4 text-sm font-bold tracking-widest text-olive2">资料来源</p><h2 class="display mb-8 text-4xl text-olive md:text-5xl">Sources & Attribution</h2><div class="space-y-4 rounded-2xl bg-white p-7 text-sm leading-7 text-ink/75 shadow-sm"><p class="font-semibold text-olive" dir="ltr">评价 · 同步时间 {syncMonth}</p><p dir="ltr">同步自 Google 地图用户评价，同步时间 {syncMonth}；版权归原作者与 Google 地图所有</p><p dir="ltr"><a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 font-bold text-olive transition hover:-translate-y-0.5">在谷歌地图查看全部评价 <ExternalLink size={16} /></a></p><p>מידע תיירותי רשמי: <a href={govtTourismUrl} target="_blank" rel="noopener noreferrer" class="text-olive underline">Israel Ministry of Tourism</a></p></div></div></section>
+    <section id="sources" class="bg-[#efe9dd]"><div class="mx-auto max-w-3xl px-5 py-16"><h2 class="display mb-6 text-4xl text-olive">מקורות ותאריך בדיקה</h2><p class="mb-5">נבדקו ב־29.10.2026. יש לאשר תנאי ביקור עדכניים ישירות.</p><ul class="list-disc space-y-4 pr-5 leading-8"><li><a href={operatorUrl} class="underline">הקוסטודיה של ארץ הקודש — גת שמנים</a>: זהות המקומות, רקע היסטורי, שעות המתחם והמערה והנחיות לשקט.</li><li><a href={cicUrl} class="underline">Christian Information Center — Shrine Opening Hours</a>: פרסום מעודכן ל־15.9.2026 לכנסייה ולמערה; ההבדלים מהמפעיל מפורטים בטבלה.</li><li><a href="https://www.cicts.org/en/fpo" class="underline">Franciscan Pilgrims’ Office</a>: תיאום תפילות וקבוצות, לא שעות הכניסה לגן.</li><li><a href={mapsUrl} class="underline">Google Maps</a>: דירוג <bdi>{ratingValue}/5</bdi>, <bdi>{reviewCount}</bdi> ביקורות בתאריך <bdi>{syncDate}</bdi>; צילום מצב של צד שלישי, ללא העתקת ביקורות.</li><li><a href="https://open-meteo.com/en/docs" class="underline">Open-Meteo</a>: נתוני מודל לתחזית בירושלים תחת <a href="https://creativecommons.org/licenses/by/4.0/" class="underline">CC BY 4.0</a>; אין מדובר בתחנת מדידה בגן.</li></ul></div></section>
+<section id="privacy" class="bg-sand"><div class="mx-auto max-w-3xl px-5 py-16"><h2 class="display mb-6 text-4xl text-olive">פרטיות ושקיפות</h2><div class="space-y-4 leading-8"><p>Google Analytics נטען אוטומטית למדידת שימוש בעמוד ועשוי להשתמש בעוגיות ובנתוני חיבור. Cloudflare מארחת את האתר ועשויה לעבד נתוני חיבור, אבטחה וביצועים, בנפרד מ־Google Analytics.</p><p>בקשת מזג האוויר נעשית לשרת האתר; השרת פונה ל־Open-Meteo עם מיקום קבוע באזור ירושלים. האתר אינו מבקש את מיקום המכשיר. Google Maps נפתח רק בלחיצה על הקישור. האיור נטען מהאתר הזה.</p><p>למדיניות הספקים: <a href="https://policies.google.com/privacy" class="underline">Google</a> · <a href="https://www.cloudflare.com/privacypolicy/" class="underline">Cloudflare</a> · <a href="https://open-meteo.com/en/terms" class="underline">Open-Meteo</a>. זהו מדריך מידע עצמאי ללא מטרות רווח, לא אתר רשמי או שירות הזמנות.</p></div></div></section>
   </main>
-  <footer class="bg-olive text-white"><div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-12 md:flex-row md:items-end md:justify-between"><div><div class="mb-3 flex items-center gap-3"><img src="/icons/logo.svg" class="h-9 w-9" alt="" /><span class="font-bold">גת שמנים</span></div><p class="max-w-sm text-sm leading-6 text-white/55">מדריך עצמאי למבקרים. מידע על שעות, גישה ואירועים עשוי להשתנות.</p></div><div class="text-sm text-white/45 md:text-left">לאתר זה אין קשר רשמי עם גת שמנים, כנסיית כל העמים או הגופים המנהלים את האתר.<br />© מדריך ירושלים עצמאי</div></div></footer>
+  <footer class="bg-olive text-white"><div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-12 md:flex-row md:items-end md:justify-between"><div><div class="mb-3 flex items-center gap-3"><img src="/icons/logo.svg" class="h-9 w-9" alt="" /><span class="font-bold">גת שמנים</span></div><p class="max-w-sm text-sm leading-6 text-white/80">מדריך תיירותי וחינוכי עצמאי ללא מטרות רווח. מידע על שעות, גישה ואירועים עשוי להשתנות.</p></div><div class="text-sm text-white/80 md:text-left">לאתר זה אין קשר רשמי עם גת שמנים, כנסיית כל העמים או הגופים המנהלים את האתר.<br />© מדריך ירושלים עצמאי</div></div></footer>
 
   <script is:inline>
-    const WX = {
-      0: ['☀️', 'בהיר'], 1: ['🌤️', 'בהיר בעיקר'], 2: ['⛅', 'מעונן חלקית'], 3: ['☁️', 'מעונן'],
-      45: ['🌫️', 'ערפילי'], 48: ['🌫️', 'ערפילי'], 51: ['🌦️', 'טפטוף קל'], 53: ['🌦️', 'טפטוף'], 55: ['🌦️', 'טפטוף'],
-      56: ['🌧️', 'גשם קפוא'], 57: ['🌧️', 'גשם קפוא'], 61: ['🌧️', 'גשם קל'], 63: ['🌧️', 'גשם'], 65: ['🌧️', 'גשם חזק'],
-      66: ['🌧️', 'גשם קפוא'], 67: ['🌧️', 'גשם קפוא'], 71: ['🌨️', 'שלג'], 73: ['🌨️', 'שלג'], 75: ['❄️', 'שלג'], 77: ['🌨️', 'גרגרי שלג'],
-      80: ['🌦️', 'ממטרים'], 81: ['🌧️', 'ממטרים'], 82: ['⛈️', 'ממטרים חזקים'], 85: ['🌨️', 'ממטרי שלג'], 86: ['🌨️', 'ממטרי שלג'],
-      95: ['⛈️', 'סופת רעמים'], 96: ['⛈️', 'סופת רעמים וברד'], 99: ['⛈️', 'סופת רעמים וברד']
-    };
-    const WD = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
-    const codeInfo = (c) => WX[c] || ['🌡️', 'מזג אוויר'];
-
-    function buildAdvice(d) {
-      const cur = d.current;
-      const day = d.daily;
-      const code = cur.weather_code;
-      const tmax = day.temperature_2m_max[0];
-      const tmin = day.temperature_2m_min[0];
-      const prob = (day.precipitation_probability_max && day.precipitation_probability_max[0]) || 0;
-      const uv = (day.uv_index_max && day.uv_index_max[0]) || cur.uv_index || 0;
-      const wind = cur.wind_speed_10m;
-      const gust = cur.wind_gusts_10m || wind;
-      const isRain = [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(code);
-      const isHeavy = [65, 66, 67, 82].includes(code);
-      const isStorm = code >= 95;
-      const isFog = code === 45 || code === 48;
-      const isClear = code <= 1;
-      const isCloud = code === 3;
-      const warn = [], outfit = [], plan = [], items = [];
-      if (prob >= 60) { plan.push('סיכוי גבוה לגשם — עדיף לתכנן ביקור באתרים מקורים ולדחות מסלולים רגליים פתוחים.'); items.push('מטריה או מעיל גשם'); }
-      if (isRain && !isHeavy && !isStorm) { outfit.push('ייתכן גשם — המסלולים עלולים להיות חלקלקים, הלכו בזהירות.'); items.push('מטריה קטנה'); }
-      if (isHeavy) { warn.push('גשם משמעותי — הימנעו מאזורים נמוכים וממסלולים חשופים; אתרים פתוחים עשויים להיסגר.'); items.push('מעיל גשם (לא מטריה ארוכה ברוח)'); }
-      if (isStorm) { warn.push('סופת רעמים — הימנעו מטיפוס, מעצים ומשטחים פתוחים; פעילויות מים סגורות בדרך כלל.'); items.push('להישאר במבנה'); }
-      if (tmax >= 32) { outfit.push('חם יחסית — לבשו בגדים קלים ונושמים.'); plan.push('קצרו שהות בחוץ בשעות הצהריים; עדיף לבקר מוקדם או לקראת ערב.'); items.push('קרם הגנה, משקפי שמש, מים'); }
-      if (uv >= 5) { outfit.push('קרינת UV חזקה — הקפידו על הגנה מהשמש.'); items.push('קרם שמש, כובע, משקפי שמש'); }
-      if (tmin <= 10) { outfit.push('קריר יחסית — דאגו ללבוש חם.'); items.push('מעיל חם'); }
-      if ((tmax - tmin) > 8) { outfit.push('הפרש טמפרטורות גדול בין יום ללילה — כדאי שכבת לבוש נוספת.'); }
-      if (gust >= 50) { warn.push('רוחות חזקות — הימנעו מאזורים חשופים ומעצמים; פעילויות בגובה עשויות להיפסק.'); items.push('כובע שעלול לעוף; עדיף לא בגדים רחבים'); }
-      else if (wind >= 29) { outfit.push('רוחות מתונות — כובע עשוי לעוף.'); }
-      if (isClear) { plan.push('מזג אוויר נאה — מתאים לביקור בחוץ ולתצפיות שקיעה.'); }
-      if (isCloud) { plan.push('אור רך — מצוין לצילום ולשיטוט ממושך בחוץ.'); }
-      if (isFog) { warn.push('ערפל — הראות לקויה; זהירות בהליכה ובנהיגה.'); }
-      if (!outfit.length) outfit.push('אין המלצת לבוש מיוחדת — לבוש רגיל מתאים.');
-      if (!plan.length) plan.push('מזג האוויר מאפשר ביקור רגיל באתר.');
-      const itemsUniq = [...new Set(items)];
-      if (!itemsUniq.length) itemsUniq.push('אין ציוד מיוחד נדרש.');
-      return { warn, outfit, plan, items: itemsUniq };
+    const WX = {0:['☀️','בהיר'],1:['🌤️','בהיר בעיקר'],2:['⛅','מעונן חלקית'],3:['☁️','מעונן'],45:['🌫️','ערפל'],48:['🌫️','ערפל'],51:['🌦️','טפטוף קל'],53:['🌦️','טפטוף'],55:['🌦️','טפטוף'],56:['🌧️','טפטוף קפוא'],57:['🌧️','טפטוף קפוא'],61:['🌧️','גשם קל'],63:['🌧️','גשם'],65:['🌧️','גשם חזק'],66:['🌧️','גשם קפוא'],67:['🌧️','גשם קפוא חזק'],71:['🌨️','שלג קל'],73:['🌨️','שלג'],75:['❄️','שלג כבד'],77:['🌨️','גרגרי שלג'],80:['🌦️','ממטרים קלים'],81:['🌧️','ממטרים'],82:['🌧️','ממטרים חזקים'],85:['🌨️','ממטרי שלג'],86:['🌨️','ממטרי שלג כבדים'],95:['⛈️','סופת רעמים'],96:['⛈️','סופת רעמים וברד'],99:['⛈️','סופת רעמים וברד']};
+    const num=(v,digits=0)=>typeof v==='number'&&Number.isFinite(v)?v.toFixed(digits):'—';
+    const info=code=>WX[code]||['🌡️','נתון חסר'];
+    const nowBox=document.getElementById('weather-now');
+    const daysBox=document.getElementById('weather-days');
+    const advice=document.getElementById('weather-advice');
+    const note=document.getElementById('weather-note');
+    const retry=document.getElementById('weather-retry');
+    let fetchedAt=0,busy=false;
+    function unavailable(){nowBox.textContent='נתוני מזג האוויר אינם זמינים כעת. נסו שוב או בדקו את המקורות המקושרים.';daysBox.replaceChildren();advice.replaceChildren();note.replaceChildren();fetchedAt=0;}
+    function paragraph(text,parent,className=''){const p=document.createElement('p');p.textContent=text;p.className=className;parent.appendChild(p);return p;}
+    async function loadWeather(){
+      if(busy)return;busy=true;retry.disabled=true;
+      const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),10000);
+      try{
+        const response=await fetch('/api/weather',{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('weather unavailable');
+        const d=await response.json();const cur=d.current,day=d.daily,offset=d.utc_offset_seconds;
+        const fetched=Date.parse(response.headers.get('X-Weather-Fetched-At')||'');
+        if(!cur||!day||![7200,10800].includes(offset)||!Number.isFinite(fetched)||Date.now()-fetched<0||Date.now()-fetched>1800000||typeof cur.time!=='string'||!Number.isFinite(cur.temperature_2m))throw Error('invalid weather');
+        const stamp=Date.parse(cur.time+(/Z$|[+-]\d\d:\d\d$/.test(cur.time)?'':'Z'))-(/Z$|[+-]\d\d:\d\d$/.test(cur.time)?0:offset*1000);
+        const today=new Date(Date.now()+offset*1000).toISOString().slice(0,10);
+        if(!Number.isFinite(stamp)||Math.abs(Date.now()-stamp)>10800000||!Array.isArray(day.time)||!day.time.length||day.time.length>7||day.time[0]!==today||day.time.some(t=>typeof t!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(t)))throw Error('stale weather');
+        for(const key of ['weather_code','temperature_2m_max','temperature_2m_min','precipitation_probability_max','uv_index_max'])if(!Array.isArray(day[key])||day[key].length!==day.time.length||day[key].some(v=>v!==null&&!Number.isFinite(v)))throw Error('invalid forecast');
+        nowBox.replaceChildren();const label=info(cur.weather_code);
+        paragraph(label[0]+' '+label[1],nowBox,'text-xl font-bold text-olive');paragraph(num(cur.temperature_2m,1)+' °C',nowBox,'my-3 text-3xl font-bold text-olive').dir='ltr';
+        paragraph('מרגיש כמו: '+num(cur.apparent_temperature,1)+' °C',nowBox);paragraph('רוח: '+num(cur.wind_speed_10m)+' קמ״ש · לחות: '+num(cur.relative_humidity_2m)+'%',nowBox);paragraph('סיכוי לגשם היום: '+num(day.precipitation_probability_max[0])+'%',nowBox);
+        daysBox.replaceChildren();day.time.forEach((date,i)=>{const cell=document.createElement('div');cell.className='rounded-xl bg-sand px-3 py-4 text-center';paragraph(date,cell,'text-sm font-bold').dir='ltr';const label=info(day.weather_code[i]);paragraph(label[0]+' '+label[1],cell,'my-2 text-sm');paragraph(num(day.temperature_2m_min[i])+'–'+num(day.temperature_2m_max[i])+' °C',cell,'font-bold').dir='ltr';paragraph('סיכוי גשם '+num(day.precipitation_probability_max[i])+'%',cell,'mt-2 text-xs');daysBox.appendChild(cell);});
+        advice.replaceChildren();const codes=[cur.weather_code,day.weather_code[0]];
+        const thunder=codes.some(c=>[95,96,99].includes(c));const heavy=codes.some(c=>[65,67,82].includes(c));
+        if(thunder)paragraph('סיכון לסופת רעמים: התרחקו משטח חשוף ואל תסתתרו מתחת לעצים. בדקו אזהרות רשמיות.',advice,'rounded border border-red-300 bg-red-50 p-5 text-red-800');
+        else if(heavy)paragraph('סיכון לגשם חזק: היזהרו ממשטחים חלקים ומנחלים זורמים. בדקו את התנאים העדכניים ואת הנחיות המפעיל.',advice,'rounded border border-red-300 bg-red-50 p-5 text-red-800');
+        if((day.precipitation_probability_max[0]??0)>=60)paragraph('סיכוי גבוה לגשם אינו קובע את עוצמתו. הכינו ציוד גשם וגמישות בתכנון.',advice,'mt-3 leading-7');
+        if((day.temperature_2m_max[0]??0)>=32)paragraph('צפוי חום: היערכו למים, להגנה מהשמש ולהפסקות; אשרו את שעות הגישה לפני היציאה.',advice,'mt-3 leading-7');
+        paragraph('התחזית אינה אישור שהמקום פתוח או בטוח לביקור. פעלו לפי אזהרות והנחיות מקומיות.',advice,'mt-3 text-sm leading-7');
+        note.replaceChildren();note.append('זמן המודל: ');const model=document.createElement('bdi');model.textContent=cur.time;note.appendChild(model);note.append(' · אזור זמן: Asia/Jerusalem · נשמר בשרת: ');const saved=document.createElement('bdi');saved.textContent=new Date(fetched).toISOString();note.appendChild(saved);note.append(' (UTC).');fetchedAt=fetched;
+      }catch{unavailable();}finally{clearTimeout(timer);busy=false;retry.disabled=false;}
     }
-
-    function renderAdvice(a) {
-      const box = document.getElementById('weather-advice');
-      let html = '';
-      if (a.warn.length) {
-        html += '<div class="rounded-2xl border border-red-300 bg-red-50 p-5 text-red-800"><p class="mb-2 font-bold">⚠️ התראה</p><ul class="list-disc pr-5 space-y-1 text-sm">' + a.warn.map((w) => '<li>' + w + '</li>').join('') + '</ul></div>';
-      }
-      const cols = [['לבוש וציוד', a.outfit], ['תכנון הביקור', a.plan], ['מה לקחת איתך', a.items]];
-      html += '<div class="mt-4 grid gap-4 md:grid-cols-3">' + cols.map(([t, arr]) =>
-        '<div class="rounded-2xl bg-white p-6 shadow-sm"><h3 class="mb-3 text-lg font-bold text-olive">' + t + '</h3><ul class="space-y-2 text-sm leading-7 text-ink/75">' +
-        arr.map((x) => '<li class="flex gap-2"><span class="text-gold">✓</span><span>' + x + '</span></li>').join('') + '</ul></div>'
-      ).join('') + '</div>';
-      box.innerHTML = html;
-    }
-
-    async function loadWeather() {
-      const now = document.getElementById('weather-now');
-      const days = document.getElementById('weather-days');
-      const note = document.getElementById('weather-note');
-      try {
-        const res = await fetch('/api/weather');
-        if (!res.ok) throw new Error('bad');
-        const d = await res.json();
-        const cur = d.current;
-        const ci = codeInfo(cur.weather_code);
-        const prob = (d.daily.precipitation_probability_max && d.daily.precipitation_probability_max[0]) || 0;
-        const uv = (d.daily.uv_index_max && d.daily.uv_index_max[0]) || cur.uv_index || 0;
-        now.innerHTML =
-          '<div class="flex items-center gap-4"><div class="text-6xl">' + ci[0] + '</div>' +
-          '<div><p class="text-3xl font-bold text-olive">' + Math.round(cur.temperature_2m) + '°C</p>' +
-          '<p class="text-sm text-ink/70">' + ci[1] + '</p></div></div>' +
-          '<div class="mt-5 grid grid-cols-2 gap-3 text-sm text-ink/70">' +
-          '<div>מרגיש כמו ' + Math.round(cur.apparent_temperature) + '°C</div>' +
-          '<div>לחות ' + cur.relative_humidity_2m + '%</div>' +
-          '<div>רוח ' + Math.round(cur.wind_speed_10m) + ' קמ"ש</div>' +
-          '<div>UV ' + Math.round(uv) + '</div>' +
-          '<div class="col-span-2">סיכוי גשם היום: ' + prob + '%</div></div>';
-        days.innerHTML = '';
-        d.daily.time.forEach((t, i) => {
-          const dt = new Date(t + 'T00:00:00');
-          const di = codeInfo(d.daily.weather_code[i]);
-          const cell = document.createElement('div');
-          cell.className = 'rounded-xl bg-sand px-3 py-4 text-center';
-          cell.innerHTML =
-            '<p class="text-xs font-semibold text-olive2">' + (i === 0 ? 'היום' : WD[dt.getDay()]) + '</p>' +
-            '<div class="my-2 text-3xl">' + di[0] + '</div>' +
-            '<p class="text-sm font-bold text-olive">' + Math.round(d.daily.temperature_2m_max[i]) + '°</p>' +
-            '<p class="text-xs text-ink/55">' + Math.round(d.daily.temperature_2m_min[i]) + '°</p>' +
-            '<p class="mt-1 text-[11px] text-ink/45">גשם ' + d.daily.precipitation_probability_max[i] + '%</p>';
-          days.appendChild(cell);
-        });
-        renderAdvice(buildAdvice(d));
-        note.textContent = 'נתוני מזג אוויר לירושלים וסביבות גת שמנים, מתעדכנים במהלך היום.';
-      } catch (e) {
-        now.textContent = 'לא ניתן לטעון את נתוני מזג אוויר כעת. נסו שוב מאוחר יותר.';
-        if (note) note.textContent = '';
-      }
-    }
-    loadWeather();
+    retry.addEventListener('click',loadWeather);loadWeather();setInterval(()=>{if(!document.hidden)loadWeather();},900000);setInterval(()=>{if(fetchedAt&&Date.now()-fetchedAt>1800000)unavailable();},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(Date.now()-fetchedAt>1800000)unavailable();loadWeather();}});
+    const menu=document.getElementById('section-menu');menu.addEventListener('click',event=>{if(event.target.closest('a'))menu.open=false;});menu.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.open=false;menu.querySelector('summary').focus();}});
   </script>
   <script is:inline>if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); }); }</script>
 </body></html>

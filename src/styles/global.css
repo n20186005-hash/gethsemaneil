@@ -9,3 +9,25 @@ body { margin: 0; background: #f4efe5; color: #1d2824; font-family: var(--font-s
 .reveal { animation: reveal .7s both; }
 @keyframes reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { animation: none; } }
+
+* { box-sizing: border-box; }
+[hidden] { display:none !important; }
+body { overflow-wrap:anywhere; }
+img,iframe { max-width:100%; }
+a:focus-visible,summary:focus-visible,button:focus-visible { outline:3px solid #a06e20;outline-offset:5px; }
+.skip-link { position:fixed;top:-10rem;right:1rem;z-index:60;background:white;padding:1rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:relative;z-index:30;background:#193c35;color:white; }
+.section-menu { position:relative;flex:none; }
+.section-menu summary { cursor:pointer;padding:.65rem 1rem;border:1px solid #ffffff80;border-radius:.7rem; }
+.section-menu nav { position:absolute;left:0;top:100%;margin-top:.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem;width:min(36rem,calc(100vw - 2.5rem));max-height:65vh;overflow-y:auto;background:#193c35;padding:.8rem;border:1px solid #d8ad6280;border-radius:.7rem;box-shadow:0 12px 30px #0004; }
+.section-menu nav a { padding:.7rem;min-height:44px; }
+.hours-table { overflow-x:auto;border:1px solid #193c3533;border-radius:.7rem;background:#fff; }
+.hours-table table { width:100%;border-collapse:collapse;text-align:right;font-size:.95rem;line-height:1.8; }
+.hours-table th,.hours-table td { padding:1rem;vertical-align:top;border-bottom:1px solid #193c3522; }
+.hours-table thead { background:#193c35;color:white; }
+.hours-table a { text-decoration:underline;text-underline-offset:.2em; }
+.hours-table caption { padding:1rem;text-align:right;font-weight:700; }
+.hours-table bdi { white-space:nowrap; }
+section[id],div[id],tr[id] { scroll-margin-top:1rem; }
+@media(max-width:600px) { .section-menu nav { grid-template-columns:1fr; }.hours-table th,.hours-table td { padding:.65rem; }.hours-table table { min-width:700px; } }
